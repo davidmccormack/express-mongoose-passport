@@ -26,7 +26,6 @@ module.exports = passport => {
           return done(null, {
             id: user.id,
             name: user.name,
-            email: user.email
           });
         }
         // otherwise, call the done callback with false.
