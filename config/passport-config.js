@@ -19,7 +19,7 @@ const handleTokenConfigs = {
 module.exports = passport => {
     // Create a new JWT strategy. (Checkout http://www.passportjs.org/docs/ > Configure > Verify Callback)
     const newJWTStrategy = new Strategy(handleTokenConfigs, (payload, done) => {
-      // When a token is recieved, use the payload.id field to find a matching user.
+      // When a token is received, use the payload.id field to find a matching user.
       User.findById(payload.id).then(user => {
         // if the user exist, call the done callback
         if (user) {
