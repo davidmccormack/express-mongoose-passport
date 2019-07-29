@@ -16,3 +16,6 @@ Once you have created your **_.env_** file, you can start the app in dev mode wi
 ```bash
 npm run dev
 ```
+
+## Registering users, Login In, and Accessing Protected Routes.
+Check out [this documentation](https://documenter.getpostman.com/view/6434796/SVYkvfzP?version=latest) for a guide on how to register new users, authenticate them, and access secure routes within this boilerplate.
