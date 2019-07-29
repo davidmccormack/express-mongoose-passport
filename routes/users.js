@@ -22,7 +22,7 @@ router.get("/", (req, res, next) => {
 // Register route
 router.post("/register", (req, res) => {
   // Find a user with the given email address already exist in DB.
-  User.findOne({ emailAddress: req.body.emailAddress })
+  User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
         // If a user with that email exist, send back an error.
@@ -34,9 +34,9 @@ router.post("/register", (req, res) => {
         // Otherwise, create a new user.
         User.create({
           name: req.body.name,
-          emailAddress: req.body.emailAddress,
+          email: req.body.email,
           password: req.body.password,
-          userName: req.body.userName
+          username: req.body.username
         }).then(newUser => {
           // Hash pw and store it in DB.
           bcrypt.hash(newUser.password, 10)
@@ -67,7 +67,7 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   // Check to see if a user with that email already exist.
-  User.findOne({ emailAddress: email }).then(user => {
+  User.findOne({ email }).then(user => {
     // If no user is found, send back an error.
     if (!user) {
       error.email = "No Accounts Found";
@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
       if (isMatch) {
         const payload = {
           id: user._id,
-          name: user.userName
+          name: user.username
         };
 
         jwt.sign(payload, secret, { expiresIn: '1h' }, (err, token) => {
